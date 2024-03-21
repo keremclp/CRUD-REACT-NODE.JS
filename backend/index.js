@@ -14,6 +14,17 @@ app.get('/', (req,res)=>{
     console.log('Hello this is the backend')
 })
 
+app.get("/books", (req, res) => {
+  const q = "SELECT * FROM books";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json(data);
+  });
+});
+
 app.listen(8800, ()=>{
     console.log('Backend server is running!')
 })
